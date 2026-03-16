@@ -33,7 +33,7 @@ export default function Navigation() {
             <button onClick={() => scrollToSection('skills')} className="text-sm font-medium hover:text-muted transition-colors">
               Skills
             </button>
-            <button onClick={() => scrollToSection('about')} className="text-sm font-medium hover:text-muted transition-colors">
+            <button onClick={() => scrollToSection('resume')} className="text-sm font-medium hover:text-muted transition-colors">
               Resume
             </button>
             
