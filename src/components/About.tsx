@@ -22,42 +22,46 @@ export default function About() {
       animate={inView ? "visible" : "hidden"}
       variants={containerVariants}
     >
-      <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-        <motion.div variants={itemVariants} className="space-y-6">
+      {/* Increased the gap and ensured items stretch properly across the max width */}
+      <div className="grid md:grid-cols-2 gap-16 md:gap-24 max-w-7xl mx-auto items-start w-full">
+        
+        {/* Text Section - Pushed to the Left */}
+        <motion.div variants={itemVariants} className="space-y-6 pr-0 md:pr-8">
           <p className="text-lg text-muted leading-relaxed">
-            As a full-stack developer with a passion for innovative technology, I bring a blend of technical 
-            expertise and creative problem-solving to every project. I consistently enhance my skills to master 
-            emerging technologies and develop efficient, scalable solutions.
+            I am a Computer Science graduate from Vellore Institute of Technology (VIT), specializing in full-stack web development, cloud infrastructure, and AI integration.
           </p>
           <p className="text-lg text-muted leading-relaxed">
-            My approach to development combines analytical thinking with a dedication to clean, maintainable code. 
-            I thrive on translating complex requirements into intuitive user experiences while ensuring robust 
-            backend architecture.
+            My recent experience includes working as an academic machine learning intern, where I built predictive models for agricultural data, and developing AI-driven backend systems during an iteration at the Skill India Platform. 
+          </p>
+          <p className="text-lg text-muted leading-relaxed">
+            Alongside my cloud certifications, I have hands-on experience architecting RESTful APIs and scalable MERN stack applications through intensive cohort projects. Whether I am provisioning AWS servers or writing smart contracts, my focus is on building clean, practical, and efficient solutions.
           </p>
         </motion.div>
         
-        <motion.div variants={itemVariants} className="grid grid-cols-2 gap-6">
-          <div className="p-6 bg-white dark:bg-charcoal border border-gray-200 dark:border-gray-800 rounded-lg hover:border-muted transition-all">
+        {/* Icon Grid Section - Pushed to the Right */}
+        <motion.div variants={itemVariants} className="grid grid-cols-2 gap-6 w-full justify-self-end max-w-lg">
+          <div className="p-6 bg-white dark:bg-[#151515] border border-gray-200 dark:border-gray-800 rounded-xl hover:border-gray-400 dark:hover:border-gray-600 transition-all shadow-sm">
             <Code className="w-8 h-8 text-charcoal dark:text-offwhite mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Developer</h3>
-            <p className="text-sm text-muted">Crafting clean code</p>
+            <h3 className="text-xl font-semibold mb-2 text-charcoal dark:text-offwhite">Developer</h3>
+            <p className="text-sm text-muted">Coding</p>
           </div>
-          <div className="p-6 bg-white dark:bg-charcoal border border-gray-200 dark:border-gray-800 rounded-lg hover:border-muted transition-all">
+          <div className="p-6 bg-white dark:bg-[#151515] border border-gray-200 dark:border-gray-800 rounded-xl hover:border-gray-400 dark:hover:border-gray-600 transition-all shadow-sm">
             <Gamepad2 className="w-8 h-8 text-charcoal dark:text-offwhite mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Gamer</h3>
-            <p className="text-sm text-muted">Problem-solving perspective</p>
+            <h3 className="text-xl font-semibold mb-2 text-charcoal dark:text-offwhite">Gamer</h3>
+            <p className="text-sm text-muted">Problem-solving</p>
           </div>
-          <div className="p-6 bg-white dark:bg-charcoal border border-gray-200 dark:border-gray-800 rounded-lg hover:border-muted transition-all">
+          <div className="p-6 bg-white dark:bg-[#151515] border border-gray-200 dark:border-gray-800 rounded-xl hover:border-gray-400 dark:hover:border-gray-600 transition-all shadow-sm">
             <Coffee className="w-8 h-8 text-charcoal dark:text-offwhite mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Coffee</h3>
-            <p className="text-sm text-muted">Fueling code</p>
+            <h3 className="text-xl font-semibold mb-2 text-charcoal dark:text-offwhite">Coffee</h3>
+            <p className="text-sm text-muted">Fueling creativity</p>
           </div>
-          <div className="p-6 bg-white dark:bg-charcoal border border-gray-200 dark:border-gray-800 rounded-lg hover:border-muted transition-all">
+          <div className="p-6 bg-white dark:bg-[#151515] border border-gray-200 dark:border-gray-800 rounded-xl hover:border-gray-400 dark:hover:border-gray-600 transition-all shadow-sm">
             <Brain className="w-8 h-8 text-charcoal dark:text-offwhite mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Learner</h3>
+            <h3 className="text-xl font-semibold mb-2 text-charcoal dark:text-offwhite">Learner</h3>
             <p className="text-sm text-muted">Always exploring</p>
           </div>
         </motion.div>
+
       </div>
     </motion.div>
   );
