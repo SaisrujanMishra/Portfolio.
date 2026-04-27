@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail, User } from 'lucide-react';
 import About from '../components/About';
+import Experience from '../components/Experience';
 import SkillsMarquee from '../components/SkillsMarquee';
 import ProjectsGallery from '../components/ProjectsGallery';
 import Resume from '../components/Resume';
