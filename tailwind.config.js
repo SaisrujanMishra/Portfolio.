@@ -13,8 +13,8 @@ export default {
           card: '#1e1e1e',    // Slightly lighter charcoal for cards/sections
         },
         offwhite: {
-          DEFAULT: '#fafafa', // Clean, premium off-white for light mode background
-          card: '#f0f0f0',    // Slightly darker off-white for light mode cards
+          DEFAULT: '#F4F3EF', // Soft, premium warm-stone/paper background (sober and gentle on eyes)
+          card: '#EAE9E4',    // Muted stone for secondary elements and badges
         },
         muted: '#888888',     // A sophisticated gray for subtitles instead of neon
       },

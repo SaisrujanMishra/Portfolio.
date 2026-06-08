@@ -33,7 +33,7 @@ const skills: Skill[] = [
 ];
 
 const renderSkillIcon = (skill: Skill) => {
-  const IconComponent = (SimpleIcons as any)[skill.icon];
+  const IconComponent = SimpleIcons[skill.icon as keyof typeof SimpleIcons];
   if (!IconComponent) return null;
 
   return (
