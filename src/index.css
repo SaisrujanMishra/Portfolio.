@@ -12,9 +12,3 @@
   }
 }
 
-
-@layer utilities {
-  .bg-gray-750 {
-    background-color: #2d374d;
-  }
-}

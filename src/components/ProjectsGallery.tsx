@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Github, MonitorSmartphone, MessageSquare, Layout, Brain, Plane, Link as LinkIcon, FileText, ShoppingCart } from 'lucide-react';
+import { Github, MonitorSmartphone, MessageSquare, Layout, Brain, Plane, Link as LinkIcon, FileText, ShoppingCart, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Project {
   id: string;
@@ -14,13 +14,12 @@ interface Project {
   iconType: 'layout' | 'monitor' | 'message' | 'brain' | 'plane' | 'link' | 'file' | 'cart'; 
 }
 
-// Ordered exactly as requested: Crop -> Task -> 4 New -> Chat -> Portfolio
 const projects: Project[] = [
   {
     id: '1',
     title: 'Crop Recommendation ML',
     description: 'Machine learning model utilizing Random Forest algorithms to recommend optimal crops based on soil metrics and environmental factors.',
-    image: '/CropML.png',
+    image: '/CropRecomendation.webp',
     technologies: ['Python', 'Jupyter', 'Scikit-learn', 'Pandas', 'Flask'],
     liveUrl: 'https://github.com/SaisrujanMishra/AI-Corp-Recomendation/tree/main',
     githubUrl: 'https://github.com/SaisrujanMishra/AI-Corp-Recomendation/tree/main',
@@ -31,7 +30,7 @@ const projects: Project[] = [
     id: '2',
     title: 'Task Manager System',
     description: 'Minimalist task management application with AI-powered task suggestions and interactive dashboard.',
-    image: '/TaskManager.png',
+    image: '/TaskManager.webp',
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'OpenAI API', 'Supabase'],
     liveUrl: 'https://taskmanager-ai.netlify.app',
     githubUrl: 'https://github.com/SaisrujanMishra/Task-manager',
@@ -42,62 +41,62 @@ const projects: Project[] = [
     id: '3',
     title: 'Real-Time Flight Tracking',
     description: 'Aviation backend ingesting live flight telemetry data with high-throughput WebSockets and Redis caching.',
-    image: '/FlightTrack.png', // Add a screenshot for this!
+    image: '',
     technologies: ['Node.js', 'WebSockets', 'Redis', 'PostgreSQL', 'Docker'],
-    liveUrl: 'https://github.com/SaisrujanMishra', // Update with actual link if available
+    liveUrl: 'https://github.com/SaisrujanMishra',
     githubUrl: 'https://github.com/SaisrujanMishra',
-    features: ['Live telemetry ingestion', 'WebSocket push updates', 'Redis low-latency caching', 'Dockerized deployment'],
+    features: ['Live telemetry ingestion', 'WebSocket push updates', 'Redis caching', 'Dockerized deployment'],
     iconType: 'plane'
   },
   {
     id: '4',
     title: 'URL Shortener Service',
     description: 'Spring Boot REST service supporting custom aliases, link expiration, JWT auth, and per-user click analytics.',
-    image: '/UrlShortener.png', // Add a screenshot for this!
+    image: '',
     technologies: ['Java', 'Spring Boot', 'Redis', 'PostgreSQL', 'Docker'],
-    liveUrl: 'https://github.com/SaisrujanMishra', // Update with actual link if available
+    liveUrl: 'https://github.com/SaisrujanMishra',
     githubUrl: 'https://github.com/SaisrujanMishra',
-    features: ['80ms to 12ms latency reduction', 'Token-bucket rate limiting', 'CI via GitHub Actions', 'JMeter load-tested'],
+    features: ['Token-bucket rate limiting', 'CI via GitHub Actions', 'JMeter load-tested'],
     iconType: 'link'
   },
   {
     id: '5',
     title: 'Resume-to-JD Matcher (RAG)',
     description: 'Retrieval-augmented generation tool comparing resumes against job descriptions to produce structured gap analyses.',
-    image: '/ResumeRAG.png', // Add a screenshot for this!
+    image: '',
     technologies: ['Python', 'FastAPI', 'Next.js', 'Gemini API', 'PostgreSQL'],
-    liveUrl: 'https://github.com/SaisrujanMishra', // Update with actual link if available
+    liveUrl: 'https://github.com/SaisrujanMishra',
     githubUrl: 'https://github.com/SaisrujanMishra',
-    features: ['Sentence-transformers embeddings', 'Cosine similarity vector search', 'Gemini API explanations', 'Full-stack deployment'],
+    features: ['Cosine similarity search', 'Gemini API explanations', 'Full-stack deployment'],
     iconType: 'file'
   },
   {
     id: '6',
     title: 'E-Commerce REST API',
     description: 'Production-style e-commerce backend supporting catalog, cart, order, and Stripe payment workflows.',
-    image: '/EcommerceAPI.png', // Add a screenshot for this!
+    image: '',
     technologies: ['Node.js', 'Express', 'MongoDB', 'JWT', 'Docker'],
-    liveUrl: 'https://github.com/SaisrujanMishra', // Update with actual link if available
+    liveUrl: 'https://github.com/SaisrujanMishra',
     githubUrl: 'https://github.com/SaisrujanMishra',
-    features: ['Role-based access control', 'Joi request validation', 'Stripe test-mode integration', 'OpenAPI/Swagger docs'],
+    features: ['Role-based access control', 'Stripe integration', 'OpenAPI/Swagger docs'],
     iconType: 'cart'
   },
   {
     id: '7',
     title: 'Chat Application',
     description: 'Real-time chat application with user authentication and online status tracking.',
-    image: '/VibeChat.png',
+    image: '/VibeChat.webp',
     technologies: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Socket.io', 'Zustand', 'JWT'],
     liveUrl: 'https://mychat-x58s.onrender.com/login',
-    githubUrl: 'https://github.com/yourusername/chat-app',
-    features: ['JWT Authentication', 'Socket.io real-time messaging', 'Status indicators'],
+    githubUrl: 'https://github.com/SaisrujanMishra',
+    features: ['JWT Authentication', 'Socket.io real-time messaging', 'Online status indicators'],
     iconType: 'message'
   },
   {
     id: '8',
     title: 'Portfolio Website',
     description: 'Personal website using React and Tailwind CSS to showcase projects, skills, and technical background.',
-    image: '/Portfolio.png', 
+    image: '/Portfolio.webp',
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
     liveUrl: 'https://saisrujan.netlify.app',
     githubUrl: 'https://github.com/SaisrujanMishra/PortFolio',
@@ -107,6 +106,15 @@ const projects: Project[] = [
 
 export default function ProjectsGallery() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollTo = direction === 'left' ? scrollLeft - clientWidth * 0.75 : scrollLeft + clientWidth * 0.75;
+      scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
+  };
 
   const ProjectIcon = ({ type }: { type: Project['iconType'] }) => {
     switch(type) {
@@ -124,10 +132,31 @@ export default function ProjectsGallery() {
 
   return (
     <div className="container mx-auto px-6">
-      <h2 className="text-3xl font-bold mb-12 tracking-tight">Projects.</h2>
+      <div className="flex justify-between items-center mb-12">
+        <h2 className="text-3xl font-bold tracking-tight text-charcoal dark:text-offwhite">Projects.</h2>
+        <div className="flex gap-3">
+          <button 
+            onClick={() => scroll('left')}
+            className="p-2 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-charcoal hover:bg-gray-100 dark:hover:bg-charcoal-card transition-colors text-charcoal dark:text-offwhite shadow-sm"
+            aria-label="Scroll Left"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button 
+            onClick={() => scroll('right')}
+            className="p-2 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-charcoal hover:bg-gray-100 dark:hover:bg-charcoal-card transition-colors text-charcoal dark:text-offwhite shadow-sm"
+            aria-label="Scroll Right"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
 
-      {/* Grid stays at 4 columns on large screens. 8 projects = 2 perfect rows! */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div 
+        ref={scrollRef}
+        className="flex gap-6 overflow-x-auto pb-6 scroll-smooth snap-x snap-mandatory scrollbar-none"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
         {projects.map(project => (
           <motion.a
             key={project.id}
@@ -138,21 +167,32 @@ export default function ProjectsGallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="block bg-white dark:bg-[#151515] rounded-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 cursor-pointer border border-gray-200 dark:border-gray-800 flex flex-col h-full shadow-sm"
+            className="snap-start shrink-0 w-[290px] sm:w-[320px] md:w-[350px] bg-white dark:bg-[#151516] rounded-xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 cursor-pointer border border-gray-200 dark:border-gray-800 flex flex-col h-[420px] shadow-sm"
             onMouseEnter={() => setHoveredProject(project.id)}
             onMouseLeave={() => setHoveredProject(null)}
           >
-            <div className="relative h-40 overflow-hidden bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shrink-0">
-              <img 
-                src={project.image} 
-                alt={project.title}
-                className="w-full h-full object-cover object-top"
-              />
+            <div className="relative h-40 overflow-hidden bg-gray-50 dark:bg-charcoal border-b border-gray-200 dark:border-gray-800 shrink-0">
+              {project.image ? (
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover object-top"
+                />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-gray-50/50 to-gray-100/50 dark:from-[#0C0C0D] dark:to-[#1e1e1f] text-muted p-4">
+                  <div className="p-3 rounded-xl bg-white dark:bg-[#151516] border border-gray-100 dark:border-gray-800 shadow-sm mb-2 text-charcoal dark:text-offwhite">
+                    <ProjectIcon type={project.iconType} />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-muted opacity-75">
+                    System Architecture
+                  </span>
+                </div>
+              )}
               {hoveredProject === project.id && project.features && (
                 <motion.div 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="absolute inset-0 bg-charcoal/95 flex items-center justify-center p-6 backdrop-blur-sm z-10"
+                  className="absolute inset-0 bg-[#0C0C0D]/95 flex items-center justify-center p-6 backdrop-blur-sm z-10"
                 >
                   <ul className="text-xs text-offwhite list-disc ml-4 space-y-1">
                     {project.features.map((feature, index) => (
@@ -165,16 +205,16 @@ export default function ProjectsGallery() {
             <div className="p-5 flex flex-col flex-grow">
               <div className="flex items-center gap-3 mb-2">
                 <ProjectIcon type={project.iconType} />
-                <h3 className="text-base font-bold leading-tight">
+                <h3 className="text-base font-bold leading-tight text-charcoal dark:text-offwhite">
                   {project.title}
                 </h3>
               </div>
-              <p className="text-sm text-muted mb-4 line-clamp-2">
+              <p className="text-sm text-muted mb-4 line-clamp-3">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-1.5 mb-4 mt-auto">
                 {project.technologies.slice(0, 3).map(tech => (
-                  <span key={tech} className="px-2 py-1 bg-offwhite-card dark:bg-charcoal-card border border-gray-200 dark:border-gray-800 rounded-md text-[10px] uppercase tracking-wider font-semibold">
+                  <span key={tech} className="px-2 py-1 bg-offwhite-card dark:bg-[#0C0C0D] border border-gray-200 dark:border-gray-800 rounded-md text-[10px] uppercase tracking-wider font-semibold">
                     {tech}
                   </span>
                 ))}

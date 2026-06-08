@@ -19,6 +19,7 @@ export default function InteractiveParticles() {
     if (!ctx) return;
 
     let animationFrameId: number;
+    let isLooping = true;
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
@@ -76,6 +77,7 @@ export default function InteractiveParticles() {
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
     const animate = () => {
+      if (!isLooping) return;
       ctx.clearRect(0, 0, width, height);
 
       particles.forEach((p) => {
@@ -108,13 +110,28 @@ export default function InteractiveParticles() {
       animationFrameId = requestAnimationFrame(animate);
     };
 
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        isLooping = false;
+        cancelAnimationFrame(animationFrameId);
+      } else {
+        if (!isLooping) {
+          isLooping = true;
+          animate();
+        }
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     animate();
 
     return () => {
+      isLooping = false;
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       observer.disconnect();
     };
   }, []);

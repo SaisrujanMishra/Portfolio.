@@ -9,12 +9,12 @@ export default {
     extend: {
       colors: {
         charcoal: {
-          DEFAULT: '#121212', // Deep, true charcoal for dark mode background
-          card: '#1e1e1e',    // Slightly lighter charcoal for cards/sections
+          DEFAULT: '#0C0C0D', // Deep slate-black for dark mode background
+          card: '#151516',    // Slick charcoal for dark mode cards
         },
         offwhite: {
-          DEFAULT: '#F4F3EF', // Soft, premium warm-stone/paper background (sober and gentle on eyes)
-          card: '#EAE9E4',    // Muted stone for secondary elements and badges
+          DEFAULT: '#F7F7F8', // Sober paper-white (gentle on eyes, high contrast)
+          card: '#EEEEEF',    // Muted light gray for secondary sections and badges
         },
         muted: '#888888',     // A sophisticated gray for subtitles instead of neon
       },
