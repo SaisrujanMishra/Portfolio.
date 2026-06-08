@@ -7,10 +7,20 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
+    const wasOpen = isOpen;
     setIsOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+
+    const scrollAction = () => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    if (wasOpen) {
+      setTimeout(scrollAction, 150); // Wait for menu collapse transition to complete
+    } else {
+      scrollAction();
     }
   };
 
